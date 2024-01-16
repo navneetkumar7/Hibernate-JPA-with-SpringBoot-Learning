@@ -3,7 +3,7 @@ package com.nt.database.jdbctojpa.jpa.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
-@Entity
+//@Entity
 @NamedQuery(name="find_all_persons", query="select p from Person p")
 @Table(name="person") // not needed as person matches with the name of the entity class
 public class Person {
