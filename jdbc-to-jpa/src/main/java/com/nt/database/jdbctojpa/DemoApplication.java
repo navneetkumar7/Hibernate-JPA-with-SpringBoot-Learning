@@ -2,6 +2,7 @@ package com.nt.database.jdbctojpa;
 
 import com.nt.database.jdbctojpa.jpaHinbernateAdvance.entity.Course;
 import com.nt.database.jdbctojpa.jpaHinbernateAdvance.repository.CourseRepository;
+import com.nt.database.jdbctojpa.jpaHinbernateAdvance.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class DemoApplication implements CommandLineRunner {
     private Logger logger= LoggerFactory.getLogger(this.getClass());
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class,args);
     }
@@ -25,6 +29,8 @@ public class DemoApplication implements CommandLineRunner {
 
        //courseRepository.emTracking();
        //courseRepository.emNonTracking();
-        courseRepository.emRefreshMethod();
+        //courseRepository.emRefreshMethod();
+
+        //studentRepository.saveStudentWithPassport();
     }
 }

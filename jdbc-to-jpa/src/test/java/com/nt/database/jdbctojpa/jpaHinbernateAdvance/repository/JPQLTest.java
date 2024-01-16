@@ -63,4 +63,14 @@ class JPQLTest {
         List<Course> resultList = typedQuery.getResultList();
         logger.info("named query:select c from Course c where name like '%learning'-> {}", resultList);
     }
+
+
+
+    @Test
+    public void jpqlWithNamedQueryIdTest() {
+        TypedQuery<Course> typedQuery = em.createNamedQuery("query_get_course_with_id", Course.class);
+        typedQuery.setParameter("id",10001);
+        List<Course> resultList = typedQuery.getResultList();
+        logger.info("named query:select c from Course c where id'-> {}", resultList);
+    }
 }
