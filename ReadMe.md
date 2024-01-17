@@ -63,4 +63,4 @@
   - default fetch strategy is Lazy
   - @JoinTable(name = "mapping table name", joinColumns = @JoinColumn(name = "owning side column name"), inverseJoinColumns = @JoinColumn(name = "other side of column name"))
   - @JoinTable will be put on owning side
-- **Owning side should have the relationship defined (in java add reference of other into owning one)in java then only mapping will be set DB**
+- **Owning side should have the relationship defined (add reference of other into owning one)in java  code then only mapping will be set in DB**
