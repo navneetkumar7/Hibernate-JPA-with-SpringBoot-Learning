@@ -1,10 +1,13 @@
 package com.nt.database.jpahibernateadvance.repository;
 
 import com.nt.database.jpahibernateadvance.entity.Course;
+import com.nt.database.jpahibernateadvance.entity.Review;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 @Transactional
@@ -65,5 +68,17 @@ public class CourseRepository {
 
         em.refresh(course1); // it will pull the course1 state from db , so updated name won't be saved for course1
         em.flush();
+    }
+
+    public void addReviewsForCourse(int id, List<Review> reviewList){
+        Course course= findById(id);
+
+        for(Review review: reviewList)
+        {
+            //setting the relationships
+            //course.addReview(review1);
+            review.setCourse(course); // setting the relation from the owning side would be sufficient
+            em.persist(review);
+        }
     }
 }

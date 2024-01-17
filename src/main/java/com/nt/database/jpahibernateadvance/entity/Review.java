@@ -1,8 +1,7 @@
 package com.nt.database.jpahibernateadvance.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.sun.source.tree.CompilationUnitTree;
+import jakarta.persistence.*;
 
 @Entity
 public class Review {
@@ -13,6 +12,8 @@ public class Review {
     private String rating;
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Course course;
     protected Review() {
 
     }
@@ -41,6 +42,14 @@ public class Review {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     @Override

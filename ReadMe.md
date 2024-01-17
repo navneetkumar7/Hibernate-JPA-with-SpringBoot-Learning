@@ -12,8 +12,8 @@
 
 - When to gor for native queries:
     - when you want to use some feature of db which is not supported by JPA, mass update, tuning features.
-Eager Fetching:
-    - one to one relation ship , when we pull the one entity other one also pulled automatically.
+- Eager Fetching:
+    - one to one relationship , when we pull the one entity other one also pulled automatically.
     - this can be performance hit.
 - Lazy Fetching:
     -  put fetch type at entity mapping : **@OneToOne(fetch = FetchType.LAZY)**
@@ -45,11 +45,17 @@ Eager Fetching:
   - To give access to db
 - In JPA we interact with Persistence context through Entity Manager Interface.
 - If there is no @Transactional on method then transaction is create for the individual db query and will be closed just after it.
-- In Hibernate, session= Persistence Context, session Factory = EntityManager
+- In Hibernate
+  - session= Persistence Context
+  - session Factory = EntityManager
 - Persistence Context is created at the start of transaction and is closed at the end of transaction.
 - @OneToOne
+  - default fetch strategy is eager
   - Uni-directional : When we can pull details of related entity from the owning entity only. 
   - Owning side of relation: Entity which, has the identifier stored of the other Entity, having relation with.
   - Bi-directional relation: When we can pull details of either entity either through owning entity or owned entity
-    - Put mappedBy in Entity which doesn't own the relationship: **@OneToOne(fetch = FetchType.LAZY, mappedBy = "name of the field in owning side thorugh which it is mapped to other entity")**
-
+- Put **mappedBy** in Entity which doesn't own the relationship: **@OneToOne(fetch = FetchType.LAZY, mappedBy = "name of the field in owning side thorugh which it is mapped to other entity")**
+- @OneToMany
+  - default fetch strategy is Lazy: meaning if one entity has one to many relation with another entity, if we pull the entity with 1:M then only that entity will be pulled default
+- @ManyToOne
+  - default fetch strategy is Eager: meaning if one entity has many to one relation with another entity, if we pull the entity with M:1 then  entity will the other entity as well

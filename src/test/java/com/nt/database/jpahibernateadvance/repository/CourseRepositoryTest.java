@@ -3,14 +3,22 @@ package com.nt.database.jpahibernateadvance.repository;
 import com.nt.database.DemoApplication;
 import com.nt.database.jpahibernateadvance.entity.Course;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = DemoApplication.class)
 class CourseRepositoryTest {
+    private Logger logger= LoggerFactory.getLogger(CourseRepositoryTest.class);
     @Autowired
     private CourseRepository courseRepository;
 
@@ -42,5 +50,16 @@ class CourseRepositoryTest {
     @DirtiesContext
     public void moreAboutEMTest() {
         courseRepository.emTracking();
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(ints={10003})
+    @Transactional
+    public void retrieveCourse(int id)
+    {
+        Course course= courseRepository.findById(id);
+        logger.info("fetching course -> {}",course);
+        logger.info("fetching reviews from course -> {}",course.getReviews());
     }
 }
