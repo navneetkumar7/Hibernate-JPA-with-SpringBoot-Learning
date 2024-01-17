@@ -59,3 +59,8 @@
   - default fetch strategy is Lazy: meaning if one entity has one to many relation with another entity, if we pull the entity with 1:M then only that entity will be pulled default
 - @ManyToOne
   - default fetch strategy is Eager: meaning if one entity has many to one relation with another entity, if we pull the entity with M:1 then  entity will the other entity as well
+- @ManyToMany
+  - default fetch strategy is Lazy
+  - @JoinTable(name = "mapping table name", joinColumns = @JoinColumn(name = "owning side column name"), inverseJoinColumns = @JoinColumn(name = "other side of column name"))
+  - @JoinTable will be put on owning side
+- **Owning side should have the relationship defined (in java add reference of other into owning one)in java then only mapping will be set DB**

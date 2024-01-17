@@ -37,10 +37,18 @@ class StudentRepositoryTest {
 
     @Test
     @Transactional
-    public void reterivePassportAndAssocicatedStudentDetailsTest() {
+    public void retrievePassportAndAssociatedStudentDetailsTest() {
         Passport passport = em.find(Passport.class, 40001);
         logger.info("passport->{}", passport);
         logger.info("Student ->{}", passport.getStudent());
+    }
+
+    @Test
+    @Transactional
+    public void retrieveStudentAndAssociatedCoursesTest() {
+        Student student = em.find(Student.class, 20001);
+        logger.info("student->{}", student);
+        logger.info("Associated courses ->{}", student.getCourses());
     }
 
     @Test

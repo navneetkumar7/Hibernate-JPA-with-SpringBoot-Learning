@@ -1,6 +1,8 @@
 package com.nt.database;
 
+import com.nt.database.jpahibernateadvance.entity.Course;
 import com.nt.database.jpahibernateadvance.entity.Review;
+import com.nt.database.jpahibernateadvance.entity.Student;
 import com.nt.database.jpahibernateadvance.repository.CourseRepository;
 import com.nt.database.jpahibernateadvance.repository.StudentRepository;
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,7 +37,10 @@ public class DemoApplication implements CommandLineRunner {
         //courseRepository.emNonTracking();
         // courseRepository.emRefreshMethod();
         // studentRepository.saveStudentWithPassport();
-        courseRepository.addReviewsForCourse(10003, getReviews());
+        //courseRepository.addReviewsForCourse(10003, getReviews());
+        studentRepository.insertStudentAndCourse(new Student("Rakshit"), new Course("Salsa learning"));
+        courseRepository.getCourseAndStudent(1);
+
     }
 
     private static List<Review> getReviews() {

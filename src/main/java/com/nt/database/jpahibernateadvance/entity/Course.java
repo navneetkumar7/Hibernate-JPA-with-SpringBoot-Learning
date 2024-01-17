@@ -10,10 +10,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "Course") // if entity name is different from the db table, e,g coursedetails--> course_details table
-@NamedQueries(value={
-        @NamedQuery(name="query_get_all_courses",query="Select c from Course c"),
-        @NamedQuery(name="query_get_all_courses_with_learning",query="select c from Course c where name like  '%learning'"),
-        @NamedQuery(name="query_get_course_with_id",query="select c from Course c where id= :id")
+@NamedQueries(value = {
+        @NamedQuery(name = "query_get_all_courses", query = "Select c from Course c"),
+        @NamedQuery(name = "query_get_all_courses_with_learning", query = "select c from Course c where name like  '%learning'"),
+        @NamedQuery(name = "query_get_course_with_id", query = "select c from Course c where id= :id")
 })
 
 public class Course {
@@ -28,7 +28,10 @@ public class Course {
     @CreationTimestamp
     private LocalDateTime createdDate;
     @OneToMany(mappedBy = "course")
-    private List<Review> reviews= new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students = new ArrayList<>();
 
     protected Course() {
 
@@ -54,12 +57,22 @@ public class Course {
         return reviews;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
+
     public void addReview(Review review) {
         this.reviews.add(review);
     }
+
     public void removeReview(Review review) {
         this.reviews.remove(review);
     }
+
     @Override
     public String toString() {
         return "Course{" +

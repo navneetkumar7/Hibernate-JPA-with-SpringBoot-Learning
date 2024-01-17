@@ -1,5 +1,6 @@
 package com.nt.database.jpahibernateadvance.repository;
 
+import com.nt.database.jpahibernateadvance.entity.Course;
 import com.nt.database.jpahibernateadvance.entity.Passport;
 import com.nt.database.jpahibernateadvance.entity.Student;
 import jakarta.persistence.EntityManager;
@@ -39,5 +40,14 @@ public class StudentRepository {
 
         em.persist(student);
     }
+
+    public void insertStudentAndCourse(Student student, Course course){
+        student.addCourse(course); // owning side should have the relationship defined then only mapping will be set
+        //course.addStudent(student);
+
+        em.persist(student);
+        em.persist(course);
+    }
+
 
 }

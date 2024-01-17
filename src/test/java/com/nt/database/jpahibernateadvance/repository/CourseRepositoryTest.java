@@ -2,6 +2,8 @@ package com.nt.database.jpahibernateadvance.repository;
 
 import com.nt.database.DemoApplication;
 import com.nt.database.jpahibernateadvance.entity.Course;
+import com.nt.database.jpahibernateadvance.entity.Student;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -21,6 +23,9 @@ class CourseRepositoryTest {
     private Logger logger= LoggerFactory.getLogger(CourseRepositoryTest.class);
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Test
     public void findByIdTest() {
@@ -61,5 +66,12 @@ class CourseRepositoryTest {
         Course course= courseRepository.findById(id);
         logger.info("fetching course -> {}",course);
         logger.info("fetching reviews from course -> {}",course.getReviews());
+    }
+    @Test
+    @Transactional
+    public void retrieveCourseAndAssociatedStudentsTest() {
+        Course course = entityManager.find(Course.class, 10001);
+        logger.info("Course->{}", course);
+        logger.info("Associated students ->{}", course.getStudents());
     }
 }
