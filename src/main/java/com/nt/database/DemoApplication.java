@@ -1,9 +1,8 @@
 package com.nt.database;
 
-import com.nt.database.jpahibernateadvance.entity.Course;
-import com.nt.database.jpahibernateadvance.entity.Review;
-import com.nt.database.jpahibernateadvance.entity.Student;
+import com.nt.database.jpahibernateadvance.entity.*;
 import com.nt.database.jpahibernateadvance.repository.CourseRepository;
+import com.nt.database.jpahibernateadvance.repository.EmployeeRepository;
 import com.nt.database.jpahibernateadvance.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @SpringBootApplication
@@ -23,6 +23,9 @@ public class DemoApplication implements CommandLineRunner {
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    EmployeeRepository employeeRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
@@ -38,9 +41,12 @@ public class DemoApplication implements CommandLineRunner {
         // courseRepository.emRefreshMethod();
         // studentRepository.saveStudentWithPassport();
         //courseRepository.addReviewsForCourse(10003, getReviews());
-        studentRepository.insertStudentAndCourse(new Student("Rakshit"), new Course("Salsa learning"));
-        courseRepository.getCourseAndStudent(1);
-
+        //studentRepository.insertStudentAndCourse(new Student("Rakshit"), new Course("Salsa learning"));
+        //courseRepository.getCourseAndStudent(1);
+        //employeeRepository.insertEmployee(new FullTimeEmployee("Rohan", new BigDecimal(10000)));
+        //employeeRepository.insertEmployee(new PartTimeEmployee("Monica", new BigDecimal(50)));
+        //logger.info("All employees-> {}", employeeRepository.retrieveAllEmployees());
+        //logger.info("Full time employees-> {}", employeeRepository.retrieveFullTimeEmployee());
     }
 
     private static List<Review> getReviews() {

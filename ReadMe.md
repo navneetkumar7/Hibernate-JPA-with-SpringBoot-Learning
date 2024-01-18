@@ -64,3 +64,21 @@
   - @JoinTable(name = "mapping table name", joinColumns = @JoinColumn(name = "owning side column name"), inverseJoinColumns = @JoinColumn(name = "other side of column name"))
   - @JoinTable will be put on owning side
 - **Owning side should have the relationship defined (add reference of other into owning one)in java  code then only mapping will be set in DB**
+- **Inheritance relationships mapping**
+  - On Entity put **@Inheritance(strategy = InheritanceType.SINGLE_TABLE)** : performance is needed then single table is good option
+    - if we want all the subclasses to be stored in single table
+    - Performance would be better as we need to query from single table, but we would have more nullables in db columns
+    - Data integrity is not good as we need keep the columns nullable to accept null value
+    - DTYPE column will be added automatically, it stores the subclassed entity type.
+    - To rename the name DTYPE(DiscriminatorType) we can use @DiscriminatorColumn(name="column_name")
+  - **@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)**: repeating columns so not good design
+    - separate table for each concrete subclass of entity
+    - common columns are repeated in all tables
+  - **@Inheritance(strategy = InheritanceType.JOINED)** : data integrity is good, all columns can be non nullable no chance to bad data
+    - every class will have separate table including parent and child classes. Rows are mapped using foreign keys contraints
+    - parent class will have common columns and child classes will have specific columns
+    - good in terms schema design no duplication data
+    - performance hit will be there are joins need to perform to pull data from all associated tables
+  - **@MappedSuperclass**: repeating columns not good design
+    - No inheritance is used, each subclasses has its own table like as TABLE_PER_CLASS but here Employee entity is not present
+    - Here we need to pull the specific concrete  entities , superclass exists only for the holding of common properties, but will not be an entity like in the case of TABLE_PER_CLASS
