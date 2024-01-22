@@ -8,6 +8,8 @@ import jakarta.persistence.EntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +17,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class EmployeeRepository {
+public class EmployeeRepository{
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     EntityManager em;

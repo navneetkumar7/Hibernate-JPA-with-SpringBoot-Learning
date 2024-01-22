@@ -13,7 +13,7 @@ import java.util.Date;
 
 
 //@SpringBootApplication
-public class JpaApplication implements CommandLineRunner {
+public class    JpaApplication implements CommandLineRunner {
 	private Logger logger= LoggerFactory.getLogger(this.getClass());
     @Autowired
 	PersonJpaRepository personJpaRepository;

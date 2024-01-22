@@ -49,12 +49,14 @@
   - session= Persistence Context
   - session Factory = EntityManager
 - Persistence Context is created at the start of transaction and is closed at the end of transaction.
+- Owning side of relation: Entity which has the identifier stored of the other Entity, having relation with.
+- Uni-directional : When we can pull details of related entity from the owning entity only.
+- Bi-directional relation: When we can pull details of either entity either through owning entity or owned entity
+
 - @OneToOne
   - default fetch strategy is eager
-  - Uni-directional : When we can pull details of related entity from the owning entity only. 
-  - Owning side of relation: Entity which, has the identifier stored of the other Entity, having relation with.
-  - Bi-directional relation: When we can pull details of either entity either through owning entity or owned entity
-- Put **mappedBy** in Entity which doesn't own the relationship: **@OneToOne(fetch = FetchType.LAZY, mappedBy = "name of the field in owning side thorugh which it is mapped to other entity")**
+
+- Put **mappedBy** in Entity which doesn't own the relationship: **@OneToOne(fetch = FetchType.LAZY, mappedBy = "name of the field of owning side through which it is mapped to other entity")**
 - @OneToMany
   - default fetch strategy is Lazy: meaning if one entity has one to many relation with another entity, if we pull the entity with 1:M then only that entity will be pulled default
 - @ManyToOne
@@ -63,7 +65,7 @@
   - default fetch strategy is Lazy
   - @JoinTable(name = "mapping table name", joinColumns = @JoinColumn(name = "owning side column name"), inverseJoinColumns = @JoinColumn(name = "other side of column name"))
   - @JoinTable will be put on owning side
-- **Owning side should have the relationship defined (add reference of other into owning one)in java  code then only mapping will be set in DB**
+- **While setting the values in DB owning side should have the relationship defined (add reference of other into owning side  in java entity being passed to save in db)in java  code then only mapping will be set in DB**
 - **Inheritance relationships mapping**
   - On Entity put **@Inheritance(strategy = InheritanceType.SINGLE_TABLE)** : performance is needed then single table is good option
     - if we want all the subclasses to be stored in single table
