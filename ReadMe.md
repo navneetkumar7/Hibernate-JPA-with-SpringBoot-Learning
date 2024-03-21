@@ -3,14 +3,14 @@
 - JPA is standard for doing object relational mapping. (mapping of objects to tables)
 - think of JPA as an interface and Hibernate is implementation.
 - If there is in memory db, then hibernate default feature of schema update will create the table in db.
-- Named Query: jpql:java persistence query language
+- JPQL:java persistence query language
 - Entity manager: Entity manager is simple interface to PersistenceContext
 - **Annotations:** @Entity @TABLE @Column @Id @GeneratedValue
 - JPQL: Java persistence query language
   - In SQl we query from the db, in JPQL  we query from Entities. JPQL queries are converted into sql queries by JPA implementation i.e Hibernate
-- NamedQuery: Assign name to query for reusability purpose;
+- NamedQuery: Assign name to query for re-usability purpose.
 
-- When to gor for native queries:
+- When to go for native queries:
     - when you want to use some feature of db which is not supported by JPA, mass update, tuning features.
 - Eager Fetching:
     - one to one relationship , when we pull the one entity other one also pulled automatically.
@@ -43,8 +43,9 @@
 - Persistence Context
   - To temp store entities we are operating in
   - To give access to db
+- Entity Manager -> Persistence Context -> DB
 - In JPA we interact with Persistence context through Entity Manager Interface.
-- If there is no @Transactional on method then transaction is create for the individual db query and will be closed just after it.
+- If there is no @Transactional on method then transaction is created for the individual db query and will be closed just after it.
 - In Hibernate
   - session= Persistence Context
   - session Factory = EntityManager
@@ -60,7 +61,7 @@
 - @OneToMany
   - default fetch strategy is Lazy: meaning if one entity has one to many relation with another entity, if we pull the entity with 1:M then only that entity will be pulled default
 - @ManyToOne
-  - default fetch strategy is Eager: meaning if one entity has many to one relation with another entity, if we pull the entity with M:1 then  entity will the other entity as well
+  - default fetch strategy is Eager: meaning if one entity has many to one relation with another entity, if we pull the entity with M:1 then  entity will pull the other entity as well
 - @ManyToMany
   - default fetch strategy is Lazy
   - @JoinTable(name = "mapping table name", joinColumns = @JoinColumn(name = "owning side column name"), inverseJoinColumns = @JoinColumn(name = "other side of column name"))
