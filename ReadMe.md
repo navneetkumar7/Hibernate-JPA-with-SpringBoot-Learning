@@ -4,8 +4,19 @@
 - think of JPA as an interface and Hibernate is implementation.
 - If there is in memory db, then hibernate default feature of schema update will create the table in db.
 - JPQL:java persistence query language
-- Entity manager: Entity manager is simple interface to PersistenceContext
-- **Annotations:** @Entity @TABLE @Column @Id @GeneratedValue
+- **Annotations:** 
+  - @Entity: to create Entity   
+  - @TABLE 
+  - @Column 
+  - @Id: used to define the field as primary key 
+  - @GeneratedValue: auto generated value by the framework:JPA
+- JPA needs default noArg constructor 
+
+- **EntityManager** 
+- em: EntityManager is simple interface to PersistenceContext.
+  - em methods:
+    - find(Class<T> var1, identifier): returns the object T.
+- Spring autoconfiguration-> H2 db ->hibernate auto enable schema-> created tables-> beans annotated with @Entity.
 - JPQL: Java persistence query language
   - In SQl we query from the db, in JPQL  we query from Entities. JPQL queries are converted into sql queries by JPA implementation i.e Hibernate
 - NamedQuery: Assign name to query for re-usability purpose.

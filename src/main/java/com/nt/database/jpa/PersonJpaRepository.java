@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-//Repository
-//Transaction
 @Repository
 @Transactional
 public class PersonJpaRepository {
