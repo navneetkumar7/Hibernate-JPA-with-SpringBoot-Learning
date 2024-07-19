@@ -94,5 +94,5 @@
     - good in terms schema design no duplication data
     - performance hit will be there are joins need to perform to pull data from all associated tables
   - **@MappedSuperclass**: repeating columns not good design
-    - No inheritance is used, each subclasses has its own table like as TABLE_PER_CLASS but here Employee entity is not present
+    - No inheritance is used, each subclasses has its own table like as TABLE_PER_CLASS but here Parent entity is not present
     - Here we need to pull the specific concrete  entities , superclass exists only for the holding of common properties, but will not be an entity like in the case of TABLE_PER_CLASS
